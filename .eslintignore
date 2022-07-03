@@ -1,0 +1,30 @@
+# Standard
+node_modules
+.DS_Store
+.env
+*.md
+*.ico
+*.png
+*.txt
+*.svg
+*.html
+*.sol
+*.xml
+*/site.webmanifest
+
+# Netlify
+.netlify
+netlify.toml
+
+# MongoDB
+mongo
+
+# React
+build
+
+# Hardhat
+cache
+coverage
+coverage.json
+artifacts
+gasReporterOutput.json
