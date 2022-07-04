@@ -1,13 +1,14 @@
 import React from "react";
 import { IconButton } from "@mui/material";
+import logo from "../assets/icons/logo.png";
 
 import { ReactComponent as CodeIcon } from "../assets/icons/code.svg";
-import { ReactComponent as OSIcon } from "../assets/icons/opensea.svg";
+/* import { ReactComponent as OSIcon } from "../assets/icons/opensea.svg"; */
 
 function Social() {
   return (
     <>
-      <IconButton
+      {/*  <IconButton
         size="large"
         aria-label="opensea"
         href="https://testnets.opensea.io/collection/time-travellers-nft-vdinxbu2if"
@@ -16,7 +17,8 @@ function Social() {
         rel="noopener"
       >
         <OSIcon width="24px" height="24px" />
-      </IconButton>
+      </IconButton> */}
+      <img src={logo} alt="logo" />
       <IconButton
         size="large"
         aria-label="github"

@@ -12,9 +12,12 @@ import {
 import { HashLink } from "react-router-hash-link";
 // change logo to d tweets
 /* import { ReactComponent as LogoIcon } from "../assets/icons/logo.svg"; */
+
 import { ReactComponent as MenuIcon } from "../assets/icons/menu.svg";
 
-const pages = ["propose", "roadmap", "faq"];
+import logo from "../assets/icons/logo.png";
+
+const pages = [/* "propose", */ "roadmap", "faq"];
 
 function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,16 +46,17 @@ function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/*   <IconButton
+        <IconButton
           size="large"
-          aria-label="time travellers dao logo"
+          aria-label="logo"
           href="/"
           sx={{ p: 0, borderRadius: 1 }}
           color="inherit"
         >
-          <LogoIcon height="64px" />
+          <logo height="64px" />
         </IconButton>
- */}
+
+        <img src={logo} alt="logo" />
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton
             value="closed"
@@ -91,13 +95,8 @@ function Header() {
               {page}
             </MenuItem>
           ))}
-          <MenuItem
-            to="#time-machine"
-            component={HashLink}
-            smooth
-            onClick={closeMenu}
-          >
-            time machine
+          <MenuItem to="#" component={HashLink} smooth onClick={closeMenu}>
+            s
           </MenuItem>
         </Menu>
         <Box

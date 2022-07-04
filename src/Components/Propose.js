@@ -244,13 +244,15 @@ function Propose({ account, network, getAccount }) {
         )}
       </Box>
       <Box>
-        <Card sx={{ width: 1, mt: 2 }}>
-          <CardMedia
-            component="img"
-            image={`data:image/png;base64,${state.imageData}`}
-            alt="screenshot of tweet"
-          />
-        </Card>
+        {state.imageData !== "" && (
+          <Card sx={{ width: 1, mt: 2 }}>
+            <CardMedia
+              component="img"
+              image={`data:image/png;base64,${state.imageData}`}
+              alt="screenshot of tweet"
+            />
+          </Card>
+        )}
       </Box>
     </Box>
   );

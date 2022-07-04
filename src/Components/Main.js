@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Container, Typography, Box, Grid } from "@mui/material";
 import rings from "vanta/dist/vanta.rings.min";
 
-import Calendar from "./Calendar";
+/* import Calendar from "./Calendar"; */
 import Header from "./Header";
 import Footer from "./Footer";
 import Propose from "./Propose";
@@ -53,10 +53,10 @@ function Main({ account, network, getAccount }) {
           {/*   <Title /> */}
         </Grid>
         <Grid id="time-machine" item xs={12} md={6}>
-          <Typography variant="h2" sx={{ mt: 4, mb: 2 }}>
+          {/*  <Typography variant="h2" sx={{ mt: 4, mb: 2 }}>
             Last saved
           </Typography>
-          <Calendar sx={{ pt: 100 }} />
+          <Calendar sx={{ pt: 100 }} /> */}
         </Grid>
 
         <Grid id="propose" item xs={12} md={6}>

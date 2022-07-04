@@ -28,7 +28,7 @@ contract DTweetNFT is ERC721URIStorage, AccessControl {
     }
 
     struct Tweet {
-        uint16 tokenID; // +1/day = 179 years worth of ID's
+        uint256 tokenID;
         string tokenURI;
         address owner;
     }
