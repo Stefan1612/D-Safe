@@ -10,7 +10,7 @@ exports.CHROME_EXECUTABLE_PATH =
 
 exports.TWEET_SETTINGS = {
   TWEET_WIDTH: 1000,
-  TWEET_PADDING: 40,
+  TWEET_PADDING: 0, // change padding to enable special border
   TWEET_HIDE_THREAD: true,
   TWEET_HIDE_CARD: false,
 };

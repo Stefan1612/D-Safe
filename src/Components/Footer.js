@@ -1,14 +1,14 @@
-import { Toolbar, AppBar, IconButton, Typography, Box } from "@mui/material";
+import { Toolbar, AppBar, Typography, Box } from "@mui/material";
 /* import { ReactComponent as LogoIcon } from "../assets/icons/logo.svg"; */
 import Social from "./Social";
 
 function Footer() {
-  const scrollToTop = () => {
+  /*  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
+  }; */
   return (
     <AppBar
       position="static"

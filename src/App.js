@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider, CssBaseline, Box, Button } from "@mui/material";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ethers } from "ethers";
 import Main from "./Components/Main";
 import theme from "./config/theme";
@@ -76,9 +76,7 @@ function App() {
       };
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  function something() {
-    console.log("Hello");
-  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

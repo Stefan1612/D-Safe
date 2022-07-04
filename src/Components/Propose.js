@@ -7,6 +7,8 @@ import {
   StepLabel,
   Stack,
   Step,
+  Card,
+  CardMedia,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { ReactComponent as WalletIcon } from "../assets/icons/wallet.svg";
@@ -18,12 +20,12 @@ import { BASE_URL, FUNCTIONS_PREFIX } from "../config/globals";
 const tweetURLPattern =
   /^((?:http:\/\/)?|(?:https:\/\/)?)?(?:www\.)?twitter\.com\/(\w+)\/status\/(\d+)$/i;
 
-const getTweetId = (tweetURL) => {
+/* const getTweetId = (tweetURL) => {
   const splitTweetURL = tweetURL.split("/");
   const lastItem = splitTweetURL[splitTweetURL.length - 1];
   const splitLastItem = lastItem.split("?");
   return splitLastItem[0];
-};
+}; */
 
 const beautifyAddress = (address) =>
   `${address.substr(0, 6)}...${address.substr(-4)}`;
@@ -77,7 +79,7 @@ function Propose({ account, network, getAccount }) {
 
   const handleImageFetch = async () => {
     const { tweetURL, language, theme } = state;
-    const tweetId = getTweetId(tweetURL);
+    /*  const tweetId = getTweetId(tweetURL); */
 
     setFormIsSubmitting(true);
 
@@ -95,6 +97,7 @@ function Propose({ account, network, getAccount }) {
     })
       .then(async (res) => {
         if (res.status === 200) return res.json();
+        // eslint-disable-next-line
         console.log("After image fetch error");
         const errorMessage = (await res.json()).error;
         throw new Error(errorMessage);
@@ -106,6 +109,7 @@ function Propose({ account, network, getAccount }) {
           imageData: image,
           nftMetadata: metadata,
         });
+
         setFormIsSubmitting(false);
         handleNext();
       })
@@ -238,6 +242,15 @@ function Propose({ account, network, getAccount }) {
             </Button>
           </>
         )}
+      </Box>
+      <Box>
+        <Card sx={{ width: 1, mt: 2 }}>
+          <CardMedia
+            component="img"
+            image={`data:image/png;base64,${state.imageData}`}
+            alt="screenshot of tweet"
+          />
+        </Card>
       </Box>
     </Box>
   );
