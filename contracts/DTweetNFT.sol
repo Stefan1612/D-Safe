@@ -27,17 +27,21 @@ contract DTweetNFT is ERC721URIStorage, AccessControl {
         _grantRole(MINTER_ROLE, msg.sender);
     }
 
-    struct Tweet {
+    struct ArchivedData {
         uint256 tokenID;
-        string tokenURI;
+        string tokenURI; // ipfs hash
         address owner;
     }
 
-    Tweet[] public arrayOffAllTweets;
+    ArchivedData[] public arrayOffAllTweets;
 
     //mapping(uint16 => Tweet) public IdToTweet;
 
-    function getAllMintedTokens() external view returns (Tweet[] memory) {
+    function getAllMintedTokens()
+        external
+        view
+        returns (ArchivedData[] memory)
+    {
         /*uint16 currentId = uint16(_tokenCounter.current());
         Tweet[] memory returnArray = new Tweet[](currentId);
         for (uint16 i = 1; i <= currentId; i++) {
@@ -47,16 +51,22 @@ contract DTweetNFT is ERC721URIStorage, AccessControl {
         return arrayOffAllTweets; // 36514 gas
     }
 
+    function getAllYourTokens() external view returns (ArchivedData[] memory) {
+        ArchivedData[] memory _ArchivedDataArray = new ArchivedData[](
+            arrayOffAllTweets.length
+        );
+    }
+
     function mintTweet(address _account, string memory _tokenURI)
         external
         onlyRole(MINTER_ROLE)
         returns (uint256)
     {
         _tokenCounter.increment();
-        uint16 currentId = uint16(_tokenCounter.current());
+        uint256 currentId = _tokenCounter.current();
         _safeMint(_account, currentId); // checks if id is already minted
         _setTokenURI(currentId, _tokenURI);
-        arrayOffAllTweets.push(Tweet(currentId, _tokenURI, _account));
+        arrayOffAllTweets.push(ArchivedData(currentId, _tokenURI, _account));
         //IdToTweet[currentId] = Tweet(currentId, _tokenURI, _account);
         emit TokenCreated(currentId, _tokenURI, _account);
         return currentId;

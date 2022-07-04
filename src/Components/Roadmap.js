@@ -16,6 +16,21 @@ function Roadmap() {
     <Timeline position="alternate" sx={{ mt: 0, pt: 0 }}>
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary" sx={{ px: 0 }}>
+          Until September
+        </TimelineOppositeContent>
+        <TimelineSeparator sx={{ mx: 2 }}>
+          <TimelineDot variant="outlined" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent sx={{ px: 0 }}>
+          <Typography variant="h3" component="span">
+            Youtube links
+          </Typography>
+          <Typography>Add the option of archiving youtube videos</Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary" sx={{ px: 0 }}>
           Until Dec
         </TimelineOppositeContent>
         <TimelineSeparator sx={{ mx: 2 }}>

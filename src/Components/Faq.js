@@ -6,7 +6,7 @@ const faqs = [
   {
     summary: "Where is the data being archived?",
     detail:
-      "The data is stored on IPFS and the IPFS hash is saved in a smart contract on ethereum",
+      "The data is stored on IPFS and the IPFS hash is saved as a part of a NFT in a smart contract on ethereum",
   },
   {
     summary: "Is it free to use?",

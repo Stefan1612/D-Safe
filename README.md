@@ -16,7 +16,7 @@ We run on Rinkeby.
 
 #### IPFS
 
-We us IPFS for all our core functionality.
+We use IPFS for all our core functionality.
 
 ### Frontend
 
