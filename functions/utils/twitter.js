@@ -99,7 +99,7 @@ exports.getMetadata = async (tweetURL, theme) => {
           const metadata = {
             name: `@${username} #${tweetId}`,
             description: `Tweet by @${username}.\nOriginal: ${tweetURL}`,
-            external_link: "https://time-travellers.netlify.app",
+            external_link: "https://regal-conkies-defc36.netlify.app/",
             attributes: attributes,
           };
           resolve(metadata);

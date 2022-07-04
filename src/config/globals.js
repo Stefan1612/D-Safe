@@ -1,7 +1,7 @@
 export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
-    : "https://time-travellers.netlify.app";
+    : "https://regal-conkies-defc36.netlify.app/";
 
 export const FUNCTIONS_PREFIX = "/.netlify/functions";
 
