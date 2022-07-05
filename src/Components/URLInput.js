@@ -7,8 +7,7 @@ const faq = {
   detail: (
     <>
       <Typography>
-        Finding the link to a Tweet you want to share isn't obvious, but it's
-        also not difficult. Here is an easy method.
+        Here is an easy method for a Tweet (Youtube links will be added soon)
       </Typography>
       <ol>
         <li>Navigate to the Tweet</li>

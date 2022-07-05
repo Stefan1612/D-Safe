@@ -11,6 +11,8 @@ import {
   CardMedia,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+// eslint-disable-next-line
+import { create as ipfsHttpClient } from "ipfs-http-client";
 import { ReactComponent as WalletIcon } from "../assets/icons/wallet.svg";
 import URLInput from "./URLInput";
 
@@ -76,11 +78,31 @@ function Propose({ account, network, getAccount }) {
   const handleReset = () => {
     setActiveStep(1);
   };
-
+  // client used to host and upload data, endpoint infura
+  const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+  // keeping track of URL inserted as image for NFT metadata
+  const [fileURL, setFileURL] = useState(null);
+  async function saveOnIPFS() {
+    // upload to IPFS but this time with metadata
+    // the metadata comes from a json, we need to stringify the data to upload it
+    console.log("saveOnIPFS got called");
+    const data = JSON.stringify({
+      address: "0x",
+      image: state.imageData,
+    });
+    try {
+      const added = await client.add(data);
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      // run a function that creates Sale and passes in the URL
+      console.log(url);
+    } catch (error) {
+      console.log("Error uploading File:", error);
+    }
+  }
   const handleImageFetch = async () => {
     const { tweetURL, language, theme } = state;
     /*  const tweetId = getTweetId(tweetURL); */
-
+    console.log("handleImageFetch called");
     setFormIsSubmitting(true);
 
     setState({
@@ -111,7 +133,12 @@ function Propose({ account, network, getAccount }) {
         });
 
         setFormIsSubmitting(false);
+
         handleNext();
+        /*  if (state.invalidTweetURLMessage === "") { */
+
+        /* saveOnIPFS(); */
+        /*   } */
       })
       .catch((err) => {
         setState({
@@ -124,7 +151,8 @@ function Propose({ account, network, getAccount }) {
 
   const handleChange = (target) => {
     const { value, name } = target;
-
+    // eslint-disable-next-line
+    console.log("handleChange called");
     if (name === "tweetURL") {
       const trimmedURL = value.split("?")[0];
       const invalidTweetURLMessage =
@@ -137,6 +165,7 @@ function Propose({ account, network, getAccount }) {
         [name]: trimmedURL,
         invalidTweetURLMessage: invalidTweetURLMessage,
       });
+
       return;
     }
 
@@ -170,8 +199,8 @@ function Propose({ account, network, getAccount }) {
       handleNext: handleNext,
     },
     {
-      title: "Clone",
-      caption: "Style and create the Tweet",
+      title: "Fetch Tweet or Youtube Video",
+      caption: "Style and create the Tweet or Video",
       description: (
         <URLInput
           state={state}
@@ -179,8 +208,19 @@ function Propose({ account, network, getAccount }) {
           handleChange={handleChange}
         />
       ),
-      nextBtnText: "Clone",
+      nextBtnText: "Fetch Tweet/Video",
       handleNext: handleImageFetch,
+    },
+    {
+      title: "Archive Data",
+      caption: "Submit you suggestion",
+      description: (
+        <Box>
+          The Tweet will be saved on IPFS and the correlating hash on ethereum
+        </Box>
+      ),
+      nextBtnText: "Archive Data",
+      handleNext: saveOnIPFS,
     },
   ];
 

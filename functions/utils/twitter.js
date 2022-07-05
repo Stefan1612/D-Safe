@@ -220,9 +220,9 @@ exports.checkTweetURL = (tweetURL) => {
 
           const tweetPosted = new Date(res.data.created_at).getTime();
           console.log("res", tweetPosted, start, end);
-          if (tweetPosted < start || tweetPosted > end) {
+          /*   if (tweetPosted < start || tweetPosted > end) {
             throw new Error("This Tweet wasn't posted today!");
-          }
+          } */
           resolve();
         }
       })
