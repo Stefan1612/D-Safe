@@ -9,6 +9,7 @@ import {
   Step,
   Card,
   CardMedia,
+  TextField,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import axios from "axios";
@@ -209,11 +210,19 @@ function Propose({ account, network, getAccount }) {
       title: "Fetch Tweet or Youtube Video",
       caption: "Style and create the Tweet or Video",
       description: (
-        <URLInput
-          state={state}
-          formIsSubmitting={formIsSubmitting}
-          handleChange={handleChange}
-        />
+        <Box>
+          <URLInput
+            state={state}
+            formIsSubmitting={formIsSubmitting}
+            handleChange={handleChange}
+          />
+          <TextField
+            disabled="disabled"
+            sx={{ width: "100%" }}
+            placeHolder="Youtube URL (Not enabled yet)"
+            label="Youtube URL (Not enabled yet)"
+          />
+        </Box>
       ),
       nextBtnText: "Fetch Tweet/Video",
       handleNext: handleImageFetch,
