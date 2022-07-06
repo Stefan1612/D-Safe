@@ -11,8 +11,11 @@ import {
   CardMedia,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import axios from "axios";
+import { buffer } from "buffer";
 // eslint-disable-next-line
 import { create as ipfsHttpClient } from "ipfs-http-client";
+
 import { ReactComponent as WalletIcon } from "../assets/icons/wallet.svg";
 import URLInput from "./URLInput";
 
@@ -85,10 +88,14 @@ function Propose({ account, network, getAccount }) {
   async function saveOnIPFS() {
     // upload to IPFS but this time with metadata
     // the metadata comes from a json, we need to stringify the data to upload it
+    /* const currentImage = state.imageData;
+    const blob = await currentImage.blob();
+    const file = new File([blob], "something.png", { type: "image/png" }); */
     console.log("saveOnIPFS got called");
+    /* const buf = Buffer.from(state.imageData, "base64"); */
     const data = JSON.stringify({
       address: "0x",
-      image: state.imageData,
+      image: /*  `data:image/png;base64,${ */ state.imageData /* }` */,
     });
     try {
       const added = await client.add(data);
@@ -223,7 +230,26 @@ function Propose({ account, network, getAccount }) {
       handleNext: saveOnIPFS,
     },
   ];
+  let image = "";
+  const [loaded, setLoaded] = useState(false);
+  async function a() {
+    // https://ipfs.infura.io/ipfs/Qmd4Qm2tuHC31AE17FCtjodxrVyvF43KYYHzWoAckYcF4g
 
+    // https://bafybeiddbnecmnkpea7lddwuhogivw2kichdvpvoymj24chxo5atjfxnca.ipfs.infura-ipfs.io/
+    const result = await axios.get(
+      "https://bafybeicwkwe5jjneryeqafqvivqa4ptoum3oktrlinxiycb6rm2s6gg5ia.ipfs.infura-ipfs.io/"
+    );
+    // eslint-disable-next-line
+    console.log("1");
+    console.log(result);
+    /* result = JSON.parse(result.data.image); */
+    console.log("2");
+    console.log(result);
+    image = result.data.image /* .data */;
+    image = image.toString(/* "base64" */);
+    console.log(image);
+    setLoaded(true);
+  }
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep}>
@@ -292,6 +318,31 @@ function Propose({ account, network, getAccount }) {
               alt="screenshot of tweet"
             />
           </Card>
+        )}
+      </Box>
+      <Box>
+        {async function A() {
+          const result = await axios.get(
+            "https://bafybeichbks5lb2s4c7u2sve6pe6crgtl4dt255bxlw3zmaeo5ui22ccje.ipfs.infura-ipfs.io/"
+          );
+          // eslint-disable-next-line
+          image = result.data.image;
+          console.log(image);
+        } && (
+          <Box>
+            <Card sx={{ width: 1, mt: 2 }}>
+              <CardMedia
+                component="img"
+                image={`data:image/png;base64,${image}`}
+                alt="screenshot of tweet"
+              />
+            </Card>
+          </Box>
+        )}
+        <Button onClick={(e) => a()}>get image</Button>
+        <br />
+        {loaded && (
+          <img src={`data:image/png;base64, ${image}`} alt="Red dot" />
         )}
       </Box>
     </Box>

@@ -52,9 +52,27 @@ contract DTweetNFT is ERC721URIStorage, AccessControl {
     }
 
     function getAllYourTokens() external view returns (ArchivedData[] memory) {
-        ArchivedData[] memory _ArchivedDataArray = new ArchivedData[](
+        /* ArchivedData[] memory _ArchivedDataArray = new ArchivedData[](
             arrayOffAllTweets.length
-        );
+        ); */
+        ArchivedData[] memory m_ArchivedDataArray = arrayOffAllTweets;
+        uint256 length;
+        for (uint256 i = 0; i <= m_ArchivedDataArray.length; i++) {
+            if (m_ArchivedDataArray[i].owner == msg.sender) {
+                length++;
+            }
+        }
+        ArchivedData[] memory m_ReturnArray = new ArchivedData[](length);
+        for (uint256 i = 0; i <= m_ArchivedDataArray.length; i++) {
+            if (m_ArchivedDataArray[i].owner == msg.sender) {
+                m_ReturnArray[i] = ArchivedData(
+                    m_ArchivedDataArray[i].tokenID,
+                    m_ArchivedDataArray[i].tokenURI,
+                    m_ArchivedDataArray[i].owner
+                );
+            }
+        }
+        return m_ReturnArray;
     }
 
     function mintTweet(address _account, string memory _tokenURI)
