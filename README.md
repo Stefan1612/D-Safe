@@ -16,7 +16,7 @@ Racism
 This Dapp should provide ONE part of the solution. It's not near where it could be and there are still a lot of untackled parameters.
 
 D Safe (There probably will be a name change) allows anyone to easily save controversial statements within a few seconds.
-Not only creating one version locally (like a screenshot would), it allows the user to create a publicly visible and provable proof of the occasion a certain event (e.g. Influencer NFT Twitter Scams).
+Not only creating one version locally (like a screenshot would), it allows the user to create a publicly visible and undeniable version (e.g. Influencer NFT Twitter Scams).
 
 ## Implementation
 
